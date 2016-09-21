@@ -7,7 +7,7 @@ var Calculator = require('../models/calculator');
 
 var CalculatorBox = React.createClass({
   getInitialState: function(){
-    return {queryCheck: new QueryCheck(), query: [], result: 0}
+    return {queryCheck: new QueryCheck(), query: [], result: ''}
   },
 
   checkQuery: function(char){
@@ -15,6 +15,7 @@ var CalculatorBox = React.createClass({
   },
 
   handleKeyboardClick: function(char){
+    this.setState({result: ''});
     this.state.queryCheck.addToQuery(char);
     this.setState({query: this.state.queryCheck.query});
   },
@@ -28,7 +29,7 @@ var CalculatorBox = React.createClass({
   render: function(){
     return(
       <div className='calc-box'>
-        <CalculatorDisplay />
+        <CalculatorDisplay query={this.state.query} result={this.state.result} handleOnChange={this.handleKeyboardClick}/>
         <CalculatorKeyboard handleClick={this.handleKeyboardClick} handleSubmit={this.handleEqualsClick}/>
       </div>
     )

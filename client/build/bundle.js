@@ -19765,7 +19765,7 @@
 	  displayName: 'CalculatorBox',
 	
 	  getInitialState: function getInitialState() {
-	    return { queryCheck: new QueryCheck(), query: [], result: 0 };
+	    return { queryCheck: new QueryCheck(), query: [], result: '' };
 	  },
 	
 	  checkQuery: function checkQuery(char) {
@@ -19773,6 +19773,7 @@
 	  },
 	
 	  handleKeyboardClick: function handleKeyboardClick(char) {
+	    this.setState({ result: '' });
 	    this.state.queryCheck.addToQuery(char);
 	    this.setState({ query: this.state.queryCheck.query });
 	  },
@@ -19787,7 +19788,7 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'calc-box' },
-	      React.createElement(CalculatorDisplay, null),
+	      React.createElement(CalculatorDisplay, { query: this.state.query, result: this.state.result, handleOnChange: this.handleKeyboardClick }),
 	      React.createElement(CalculatorKeyboard, { handleClick: this.handleKeyboardClick, handleSubmit: this.handleEqualsClick })
 	    );
 	  }
@@ -19808,14 +19809,23 @@
 	  displayName: 'CalculatorDisplay',
 	
 	
+	  handleOnChange: function handleOnChange(e) {
+	    this.props.handleOnChange(e.target.value);
+	  },
+	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'col-6' },
 	      React.createElement(
 	        'div',
-	        { className: 'display' },
-	        React.createElement('input', { type: 'text' })
+	        { className: 'display', contentEditable: 'true', onChange: this.handleOnChange },
+	        this.props.query
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'result' },
+	        this.props.result
 	      )
 	    );
 	  }
