@@ -4,12 +4,11 @@ var CalculatorKeyboard = React.createClass({
 
   handleClick: function(e){
     console.log(e.target.value);
-    // this.props.handleClick(e.target.value);
+    this.props.handleClick(e.target.value);
   },
 
-  handleSubmit: function(e){
-    console.log(e.target.value);
-    // this.props.handleSubmit(e.target.value);
+  handleSubmit: function(){
+    this.props.handleSubmit();
   },
 
   render: function(){

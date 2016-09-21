@@ -48,7 +48,7 @@
 	
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var CalculatorBox = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/CalculatorBox\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var CalculatorBox = __webpack_require__(159);
 	
 	window.onload = function () {
 	  ReactDOM.render(React.createElement(CalculatorBox, null), document.getElementById('app'));
@@ -19747,6 +19747,387 @@
 	
 	module.exports = __webpack_require__(3);
 
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var CalculatorDisplay = __webpack_require__(160);
+	var CalculatorKeyboard = __webpack_require__(161);
+	
+	var QueryCheck = __webpack_require__(163);
+	var Calculator = __webpack_require__(164);
+	
+	var CalculatorBox = React.createClass({
+	  displayName: 'CalculatorBox',
+	
+	  getInitialState: function getInitialState() {
+	    return { queryCheck: new QueryCheck(), query: [], result: 0 };
+	  },
+	
+	  checkQuery: function checkQuery(char) {
+	    return this.state.queryCheck.checkIllegalCharacters(char);
+	  },
+	
+	  handleKeyboardClick: function handleKeyboardClick(char) {
+	    this.state.queryCheck.addToQuery(char);
+	    this.setState({ query: this.state.queryCheck.query });
+	  },
+	
+	  handleEqualsClick: function handleEqualsClick() {
+	    var calculator = new Calculator(this.state.query);
+	    var result = calculator.calculate();
+	    this.setState({ result: result, query: [] });
+	  },
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'calc-box' },
+	      React.createElement(
+	        'div',
+	        { className: 'col-6' },
+	        React.createElement(CalculatorDisplay, null)
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'col-6' },
+	        React.createElement(CalculatorKeyboard, { handleClick: this.handleKeyboardClick, handleSubmit: this.handleEqualsClick })
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = CalculatorBox;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var CalculatorDisplay = React.createClass({
+	  displayName: 'CalculatorDisplay',
+	
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'display' },
+	      React.createElement('input', { type: 'text' })
+	    );
+	  }
+	
+	});
+	
+	module.exports = CalculatorDisplay;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var CalculatorKeyboard = React.createClass({
+	  displayName: 'CalculatorKeyboard',
+	
+	
+	  handleClick: function handleClick(e) {
+	    console.log(e.target.value);
+	    this.props.handleClick(e.target.value);
+	  },
+	
+	  handleSubmit: function handleSubmit() {
+	    this.props.handleSubmit();
+	  },
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'keyboard' },
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '7' },
+	          '7'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '8' },
+	          '8'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '9' },
+	          '9'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '/' },
+	          '÷'
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '4' },
+	          '4'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '5' },
+	          '5'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '6' },
+	          '6'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '*' },
+	          'x'
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '1' },
+	          '1'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '2' },
+	          '2'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '3' },
+	          '3'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '-' },
+	          '-'
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '0' },
+	          '0'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '.' },
+	          '.'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleSubmit, value: '=' },
+	          '='
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'col-3', onClick: this.handleClick, value: '+' },
+	          '+'
+	        )
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = CalculatorKeyboard;
+
+/***/ },
+/* 162 */,
+/* 163 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var QueryCheck = function QueryCheck() {
+	  this.query = [];
+	  this.legalCharacters = ['+', '-', '*', '/'];
+	};
+	
+	QueryCheck.prototype = {
+	  proceedingChar: function proceedingChar() {
+	    return this.query[this.query.length - 1];
+	  },
+	
+	  addToProceedingCharCheck: function addToProceedingCharCheck() {
+	    return this.checkNumber(this.proceedingChar()) || this.proceedingChar() === '.';
+	  },
+	
+	  concatNumbers: function concatNumbers(char) {
+	    var entryIndex = this.query.indexOf(this.proceedingChar());
+	    this.query[entryIndex] = this.query[entryIndex] + char;
+	  },
+	
+	  addToQuery: function addToQuery(char) {
+	    if (this.checkIllegalCharacters(char)) {
+	      if (this.addToProceedingCharCheck() && !this.checkOperator(char)) {
+	        this.concatNumbers(char);
+	      } else {
+	        this.query.push(char);
+	      }
+	      return true;
+	    }
+	    return false;
+	  },
+	
+	  checkIllegalCharacters: function checkIllegalCharacters(char) {
+	    if (!this.checkNumber(char) && !this.checkOperator(char) && char != '.') {
+	      return false;
+	    }
+	    return true;
+	  },
+	
+	  checkNumber: function checkNumber(char) {
+	    return !isNaN(parseFloat(char));
+	  },
+	
+	  checkOperator: function checkOperator(char) {
+	    var check = false;
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+	
+	    try {
+	      for (var _iterator = this.legalCharacters[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        var operator = _step.value;
+	
+	        if (char === operator) {
+	          check = true;
+	        }
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
+	    }
+	
+	    return check;
+	  }
+	
+	};
+	
+	module.exports = QueryCheck;
+
+/***/ },
+/* 164 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var Calculator = function Calculator(query) {
+	  this.query = query;
+	};
+	
+	Calculator.prototype = {
+	
+	  calculate: function calculate() {
+	    console.log(this.query);
+	    while (this.query.length > 1) {
+	      if (this.DMCheck()) {
+	        this.splitOnDM();
+	      } else if (this.ASCheck()) {
+	        this.splitOnAS();
+	      }
+	    }
+	    console.log(this.query);
+	    return this.query[0];
+	  },
+	
+	  DMCheck: function DMCheck() {
+	    for (var i = 0; i < this.query.length; i++) {
+	      if (this.query[i] === '*' || this.query[i] === '/') {
+	        return true;
+	      }
+	    }
+	  },
+	  ASCheck: function ASCheck() {
+	    for (var i = 0; i < this.query.length; i++) {
+	      if (this.query[i] === '+' || this.query[i] === '-') {
+	        return true;
+	      }
+	    }
+	  },
+	  splitOnDM: function splitOnDM() {
+	    var splitQuery = [];
+	    for (var i = 0; i < this.query.length; i++) {
+	      if (this.query[i] === '*' || this.query[i] === '/') {
+	        var result = this.DMSum(this.query[i], this.query[i - 1], this.query[i + 1]);
+	        splitQuery.push(result);
+	        for (var j = i + 2; j < this.query.length; j++) {
+	          splitQuery.push(this.query[j]);
+	        }
+	        this.query = splitQuery;
+	        return;
+	      }
+	    }
+	  },
+	  splitOnAS: function splitOnAS() {
+	    var splitQuery = [];
+	    for (var i = 0; i < this.query.length; i++) {
+	      if (this.query[i] === '+' || this.query[i] === '-') {
+	        var result = this.ASSum(this.query[i], this.query[i - 1], this.query[i + 1]);
+	        splitQuery.push(result);
+	        for (var j = i + 2; j < this.query.length; j++) {
+	          splitQuery.push(this.query[j]);
+	        }
+	        this.query = splitQuery;
+	        return;
+	      }
+	    }
+	  },
+	
+	  DMSum: function DMSum(operator, num1, num2) {
+	    if (operator === '*') {
+	      return parseFloat(num1) * parseFloat(num2);
+	    } else if (operator === '/') {
+	      return parseFloat(num1) / parseFloat(num2);
+	    }
+	  },
+	
+	  ASSum: function ASSum(operator, num1, num2) {
+	    if (operator === '+') {
+	      return parseFloat(num1) + parseFloat(num2);
+	    } else if (operator === '-') {
+	      return parseFloat(num1) - parseFloat(num2);
+	    }
+	  }
+	
+	};
+	
+	module.exports = Calculator;
 
 /***/ }
 /******/ ]);

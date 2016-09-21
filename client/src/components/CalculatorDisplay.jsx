@@ -5,7 +5,7 @@ var CalculatorDisplay = React.createClass({
   render: function(){
     return(
       <div className='display'>
-        DISPLAY
+        <input type='text'></input>
       </div>
     )
   }

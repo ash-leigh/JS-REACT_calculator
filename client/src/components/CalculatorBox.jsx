@@ -2,19 +2,27 @@ var React = require('react');
 var CalculatorDisplay = require('./CalculatorDisplay');
 var CalculatorKeyboard = require('./CalculatorKeyboard');
 
+var QueryCheck = require('../models/queryCheck');
+var Calculator = require('../models/calculator');
+
 var CalculatorBox = React.createClass({
   getInitialState: function(){
-    return {
-      query: [];
-    }
+    return {queryCheck: new QueryCheck(), query: [], result: 0}
   },
 
-  handleKeyboardClick: function(){
+  checkQuery: function(char){
+    return this.state.queryCheck.checkIllegalCharacters(char);
+  },
 
+  handleKeyboardClick: function(char){
+    this.state.queryCheck.addToQuery(char);
+    this.setState({query: this.state.queryCheck.query});
   },
 
   handleEqualsClick: function(){
-    
+    var calculator = new Calculator(this.state.query);
+    var result = calculator.calculate();
+    this.setState({result: result, query: []});
   },
 
   render: function(){
