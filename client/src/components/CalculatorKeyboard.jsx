@@ -13,7 +13,7 @@ var CalculatorKeyboard = React.createClass({
 
   render: function(){
     return(
-      <div className='keyboard'>
+      <div className='col-6 keyboard'>
         <div className='row'>
           <button className='col-3' onClick={this.handleClick} value='7'>7</button>
           <button className='col-3' onClick={this.handleClick} value='8'>8</button>

@@ -18,7 +18,9 @@
 [class*="col-"] {
  float: left;
  padding: 0.01%;
- border: solid black 1px;
+ height:100%;
+ overflow: hidden;
+ position: relative;
 }
 
 .row::after {
@@ -34,24 +36,19 @@ body{
   font-family: 'Source Serif Pro', serif;
   font-size: 100%
 }
-
-.app{
-  height: 100%;
-}
 .calc-box{
-  border: solid black 1px;
   margin: 10%;
   height: 100%;
+  background-color: yellow;
+  overflow: hidden;
 }
 .display{
-
+  border: solid red 1px;
+  height: 100%;
 }
 .display input{
   width: 100%;
   height: 100%;
-}
-.keyboard{
-  
 }
 .keyboard button{
   padding: 5%;

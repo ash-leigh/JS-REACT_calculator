@@ -28,12 +28,8 @@ var CalculatorBox = React.createClass({
   render: function(){
     return(
       <div className='calc-box'>
-        <div className='col-6'>
-          <CalculatorDisplay />
-        </div>
-        <div className='col-6'>
-          <CalculatorKeyboard handleClick={this.handleKeyboardClick} handleSubmit={this.handleEqualsClick}/>
-        </div>
+        <CalculatorDisplay />
+        <CalculatorKeyboard handleClick={this.handleKeyboardClick} handleSubmit={this.handleEqualsClick}/>
       </div>
     )
   }

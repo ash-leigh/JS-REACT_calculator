@@ -4,8 +4,10 @@ var CalculatorDisplay = React.createClass({
   
   render: function(){
     return(
-      <div className='display'>
-        <input type='text'></input>
+      <div className='col-6'>
+        <div className='display'>
+          <input type='text'></input>
+        </div>
       </div>
     )
   }

@@ -19787,16 +19787,8 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'calc-box' },
-	      React.createElement(
-	        'div',
-	        { className: 'col-6' },
-	        React.createElement(CalculatorDisplay, null)
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-6' },
-	        React.createElement(CalculatorKeyboard, { handleClick: this.handleKeyboardClick, handleSubmit: this.handleEqualsClick })
-	      )
+	      React.createElement(CalculatorDisplay, null),
+	      React.createElement(CalculatorKeyboard, { handleClick: this.handleKeyboardClick, handleSubmit: this.handleEqualsClick })
 	    );
 	  }
 	
@@ -19819,8 +19811,12 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'display' },
-	      React.createElement('input', { type: 'text' })
+	      { className: 'col-6' },
+	      React.createElement(
+	        'div',
+	        { className: 'display' },
+	        React.createElement('input', { type: 'text' })
+	      )
 	    );
 	  }
 	
@@ -19852,7 +19848,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'keyboard' },
+	      { className: 'col-6 keyboard' },
 	      React.createElement(
 	        'div',
 	        { className: 'row' },
