@@ -1,0 +1,20 @@
+{
+  "name": "end_point",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha ./client/src/models/specs",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+    },
+  "description": ""
+}
