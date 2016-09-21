@@ -48,7 +48,7 @@
 	
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var CalculatorBox = __webpack_require__(159);
+	var CalculatorBox = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/CalculatorBox\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	window.onload = function () {
 	  ReactDOM.render(React.createElement(CalculatorBox, null), document.getElementById('app'));
@@ -19747,89 +19747,6 @@
 	
 	module.exports = __webpack_require__(3);
 
-
-/***/ },
-/* 159 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var CalculatorDisplay = __webpack_require__(160);
-	var CalculatorKeyboard = __webpack_require__(161);
-	
-	var CalculatorBox = React.createClass({
-	  displayName: 'CalculatorBox',
-	
-	
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'div',
-	        { className: 'col-6' },
-	        React.createElement(CalculatorDisplay, null)
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-6' },
-	        React.createElement(CalculatorKeyboard, null)
-	      )
-	    );
-	  }
-	
-	});
-	
-	module.exports = CalculatorBox;
-
-/***/ },
-/* 160 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	
-	var CalculatorDisplay = React.createClass({
-	  displayName: 'CalculatorDisplay',
-	
-	  getInitialState: function getInitialState() {},
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: true },
-	      'DISPLAY'
-	    );
-	  }
-	
-	});
-	
-	module.exports = CalculatorDisplay;
-
-/***/ },
-/* 161 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	
-	var CalculatorKeyboard = React.createClass({
-	  displayName: 'CalculatorKeyboard',
-	
-	
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      'KEYBOARD'
-	    );
-	  }
-	
-	});
-	
-	module.exports = CalculatorKeyboard;
 
 /***/ }
 /******/ ]);

@@ -34,3 +34,16 @@ body{
   font-family: 'Source Serif Pro', serif;
   font-size: 100%
 }
+.calc-box{
+  margin: 10%;
+}
+.display{
+  padding: 1%;
+  
+}
+.keyboard{
+  padding: 1%;
+}
+.keyboard button{
+  padding: 10%;
+}

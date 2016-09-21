@@ -1,12 +1,10 @@
 var React = require('react');
 
 var CalculatorDisplay = React.createClass({
-  getInitialState: function(){
-    
-  },
+  
   render: function(){
     return(
-      <div className>
+      <div className='display'>
         DISPLAY
       </div>
     )
