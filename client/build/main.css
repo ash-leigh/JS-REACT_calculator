@@ -43,11 +43,15 @@ body{
 }
 .display{
   padding: 10%;
+  width: 100%;
   outline: none;
+  border: none;
 }
 .result{
   padding: 10%;
 }
 .keyboard button{
   padding: 5%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 100%
 }

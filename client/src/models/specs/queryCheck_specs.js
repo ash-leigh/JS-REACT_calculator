@@ -91,4 +91,15 @@ describe('Query Check', function(){
     assert.equal(queryCheck.checkIllegalCharacters('/'), true);
   });
 
+  it('should be able to clear query', function(){
+    queryCheck.addToQuery('2');
+    queryCheck.addToQuery('+');
+    queryCheck.addToQuery('3');
+    queryCheck.addToQuery('1');
+    queryCheck.addToQuery('.');
+    queryCheck.addToQuery('2');
+    queryCheck.clearQuery();
+    assert.equal(queryCheck.query.length, 0);
+  });
+
 });

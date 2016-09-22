@@ -19758,8 +19758,8 @@
 	var CalculatorDisplay = __webpack_require__(160);
 	var CalculatorKeyboard = __webpack_require__(161);
 	
-	var QueryCheck = __webpack_require__(163);
-	var Calculator = __webpack_require__(164);
+	var QueryCheck = __webpack_require__(162);
+	var Calculator = __webpack_require__(163);
 	
 	var CalculatorBox = React.createClass({
 	  displayName: 'CalculatorBox',
@@ -19772,7 +19772,7 @@
 	    return this.state.queryCheck.checkIllegalCharacters(char);
 	  },
 	
-	  handleKeyboardClick: function handleKeyboardClick(char) {
+	  handleInput: function handleInput(char) {
 	    this.setState({ result: '' });
 	    this.state.queryCheck.addToQuery(char);
 	    this.setState({ query: this.state.queryCheck.query });
@@ -19781,6 +19781,7 @@
 	  handleEqualsClick: function handleEqualsClick() {
 	    var calculator = new Calculator(this.state.query);
 	    var result = calculator.calculate();
+	    this.state.queryCheck.clearQuery();
 	    this.setState({ result: result, query: [] });
 	  },
 	
@@ -19788,8 +19789,8 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'calc-box' },
-	      React.createElement(CalculatorDisplay, { query: this.state.query, result: this.state.result, handleOnChange: this.handleKeyboardClick }),
-	      React.createElement(CalculatorKeyboard, { handleClick: this.handleKeyboardClick, handleSubmit: this.handleEqualsClick })
+	      React.createElement(CalculatorDisplay, { query: this.state.query, result: this.state.result, handleOnChange: this.handleInput }),
+	      React.createElement(CalculatorKeyboard, { handleClick: this.handleInput, handleSubmit: this.handleEqualsClick })
 	    );
 	  }
 	
@@ -19810,18 +19811,15 @@
 	
 	
 	  handleOnChange: function handleOnChange(e) {
-	    this.props.handleOnChange(e.target.value);
+	    var typedChar = e.target.value.substr(e.target.value.length - 1);
+	    this.props.handleOnChange(typedChar);
 	  },
 	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'col-6' },
-	      React.createElement(
-	        'div',
-	        { className: 'display', contentEditable: 'true', onChange: this.handleOnChange },
-	        this.props.query
-	      ),
+	      React.createElement('textarea', { className: 'display', value: this.props.query, onChange: this.handleOnChange }),
 	      React.createElement(
 	        'div',
 	        { className: 'result' },
@@ -19963,8 +19961,7 @@
 	module.exports = CalculatorKeyboard;
 
 /***/ },
-/* 162 */,
-/* 163 */
+/* 162 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20041,6 +20038,9 @@
 	    }
 	
 	    return check;
+	  },
+	  clearQuery: function clearQuery() {
+	    this.query = [];
 	  }
 	
 	};
@@ -20048,7 +20048,7 @@
 	module.exports = QueryCheck;
 
 /***/ },
-/* 164 */
+/* 163 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20060,7 +20060,6 @@
 	Calculator.prototype = {
 	
 	  calculate: function calculate() {
-	    console.log(this.query);
 	    while (this.query.length > 1) {
 	      if (this.DMCheck()) {
 	        this.splitOnDM();
@@ -20068,7 +20067,6 @@
 	        this.splitOnAS();
 	      }
 	    }
-	    console.log(this.query);
 	    return this.query[0];
 	  },
 	

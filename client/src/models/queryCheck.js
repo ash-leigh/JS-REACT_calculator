@@ -48,6 +48,9 @@ QueryCheck.prototype = {
       }
     }
     return check;
+  },
+  clearQuery: function(){
+    this.query = [];
   }
 
 };

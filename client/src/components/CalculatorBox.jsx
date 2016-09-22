@@ -14,8 +14,8 @@ var CalculatorBox = React.createClass({
     return this.state.queryCheck.checkIllegalCharacters(char);
   },
 
-  handleKeyboardClick: function(char){
-    this.setState({result: ''});
+  handleInput: function(char){
+    this.setState({result: ''})
     this.state.queryCheck.addToQuery(char);
     this.setState({query: this.state.queryCheck.query});
   },
@@ -23,14 +23,15 @@ var CalculatorBox = React.createClass({
   handleEqualsClick: function(){
     var calculator = new Calculator(this.state.query);
     var result = calculator.calculate();
+    this.state.queryCheck.clearQuery();
     this.setState({result: result, query: []});
   },
 
   render: function(){
     return(
       <div className='calc-box'>
-        <CalculatorDisplay query={this.state.query} result={this.state.result} handleOnChange={this.handleKeyboardClick}/>
-        <CalculatorKeyboard handleClick={this.handleKeyboardClick} handleSubmit={this.handleEqualsClick}/>
+        <CalculatorDisplay query={this.state.query} result={this.state.result} handleOnChange={this.handleInput}/>
+        <CalculatorKeyboard handleClick={this.handleInput} handleSubmit={this.handleEqualsClick}/>
       </div>
     )
   }

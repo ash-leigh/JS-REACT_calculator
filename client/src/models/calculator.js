@@ -5,7 +5,6 @@ var Calculator = function(query){
 Calculator.prototype = {
   
   calculate: function(){
-    console.log(this.query)
     while(this.query.length > 1){
       if(this.DMCheck()){
         this.splitOnDM();
@@ -13,7 +12,6 @@ Calculator.prototype = {
         this.splitOnAS();
       }
     }
-    console.log(this.query)
     return this.query[0];
   },
   

@@ -3,13 +3,14 @@ var React = require('react');
 var CalculatorDisplay = React.createClass({
 
   handleOnChange: function(e){
-    this.props.handleOnChange(e.target.value);
+    var typedChar = e.target.value.substr(e.target.value.length - 1);
+    this.props.handleOnChange(typedChar);
   },
   
   render: function(){
     return(
       <div className='col-6'>
-        <div className='display' contentEditable="true" onChange={this.handleOnChange}>{this.props.query}</div>
+        <textarea className='display' value={this.props.query} onChange={this.handleOnChange}></textarea>
         <div className='result'>{this.props.result}</div>
       </div>
     )
