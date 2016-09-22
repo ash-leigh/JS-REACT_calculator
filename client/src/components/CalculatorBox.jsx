@@ -7,7 +7,7 @@ var Calculator = require('../models/calculator');
 
 var CalculatorBox = React.createClass({
   getInitialState: function(){
-    return {queryCheck: new QueryCheck(), query: [], result: ''}
+    return {queryCheck: new QueryCheck(), display: [], displayClass: 'display'}
   },
 
   checkQuery: function(char){
@@ -15,22 +15,26 @@ var CalculatorBox = React.createClass({
   },
 
   handleInput: function(char){
-    this.setState({result: ''})
-    this.state.queryCheck.addToQuery(char);
-    this.setState({query: this.state.queryCheck.query});
+    if(!this.checkQuery(char)){
+      this.setState({display: 'not valid character', displayClass: 'error'})
+    }else{
+      this.state.queryCheck.addToQuery(char);
+      this.setState({display: this.state.queryCheck.query, displayClass: 'display'});
+    }
   },
 
   handleEqualsClick: function(){
-    var calculator = new Calculator(this.state.query);
+    var calculator = new Calculator(this.state.display);
     var result = calculator.calculate();
     this.state.queryCheck.clearQuery();
-    this.setState({result: result, query: []});
+    this.setState({display: result});
   },
 
   render: function(){
     return(
       <div className='calc-box'>
-        <CalculatorDisplay query={this.state.query} result={this.state.result} handleOnChange={this.handleInput}/>
+      <div className='header'>JS React Calculator</div>
+        <CalculatorDisplay display={this.state.display}handleOnChange={this.handleInput} class={this.state.displayClass}/>
         <CalculatorKeyboard handleClick={this.handleInput} handleSubmit={this.handleEqualsClick}/>
       </div>
     )

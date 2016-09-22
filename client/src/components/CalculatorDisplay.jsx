@@ -10,8 +10,7 @@ var CalculatorDisplay = React.createClass({
   render: function(){
     return(
       <div className='col-6'>
-        <textarea className='display' value={this.props.query} onChange={this.handleOnChange}></textarea>
-        <div className='result'>{this.props.result}</div>
+        <textarea className={this.props.class} value={this.props.display} onChange={this.handleOnChange}></textarea>
       </div>
     )
   }

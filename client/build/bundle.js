@@ -19765,7 +19765,7 @@
 	  displayName: 'CalculatorBox',
 	
 	  getInitialState: function getInitialState() {
-	    return { queryCheck: new QueryCheck(), query: [], result: '' };
+	    return { queryCheck: new QueryCheck(), display: [], displayClass: 'display' };
 	  },
 	
 	  checkQuery: function checkQuery(char) {
@@ -19773,23 +19773,31 @@
 	  },
 	
 	  handleInput: function handleInput(char) {
-	    this.setState({ result: '' });
-	    this.state.queryCheck.addToQuery(char);
-	    this.setState({ query: this.state.queryCheck.query });
+	    if (!this.checkQuery(char)) {
+	      this.setState({ display: 'not valid character', displayClass: 'error' });
+	    } else {
+	      this.state.queryCheck.addToQuery(char);
+	      this.setState({ display: this.state.queryCheck.query, displayClass: 'display' });
+	    }
 	  },
 	
 	  handleEqualsClick: function handleEqualsClick() {
-	    var calculator = new Calculator(this.state.query);
+	    var calculator = new Calculator(this.state.display);
 	    var result = calculator.calculate();
 	    this.state.queryCheck.clearQuery();
-	    this.setState({ result: result, query: [] });
+	    this.setState({ display: result });
 	  },
 	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'calc-box' },
-	      React.createElement(CalculatorDisplay, { query: this.state.query, result: this.state.result, handleOnChange: this.handleInput }),
+	      React.createElement(
+	        'div',
+	        { className: 'header' },
+	        'JS React Calculator'
+	      ),
+	      React.createElement(CalculatorDisplay, { display: this.state.display, handleOnChange: this.handleInput, 'class': this.state.displayClass }),
 	      React.createElement(CalculatorKeyboard, { handleClick: this.handleInput, handleSubmit: this.handleEqualsClick })
 	    );
 	  }
@@ -19819,12 +19827,7 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'col-6' },
-	      React.createElement('textarea', { className: 'display', value: this.props.query, onChange: this.handleOnChange }),
-	      React.createElement(
-	        'div',
-	        { className: 'result' },
-	        this.props.result
-	      )
+	      React.createElement('textarea', { className: this.props.class, value: this.props.display, onChange: this.handleOnChange })
 	    );
 	  }
 	

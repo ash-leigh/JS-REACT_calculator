@@ -32,13 +32,19 @@
 body{
   padding: 0;
   margin: 0;
+  background-color: #E9E0D6;
   font-family: 'Poppins', sans-serif;
   font-size: 200%
 }
+.header{
+  background-color: #E9E0D6;
+  color: #EB7260;
+  font-size: 150%
+}
 .calc-box{
-  margin: 5%;
+  margin: 8%;
   height: 100%;
-  background-color: yellow;
+  background-color: #354458;
   overflow: hidden;
 }
 .display{
@@ -46,12 +52,34 @@ body{
   width: 100%;
   outline: none;
   border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 100%;
+  resize: none;
+  background-color: #354458;
+  color: #ffffff;
 }
-.result{
+.error{
   padding: 10%;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 100%;
+  resize: none;
+  background-color: #354458;
+  color: #EB7260;
 }
 .keyboard button{
   padding: 5%;
   font-family: 'Poppins', sans-serif;
-  font-size: 100%
+  font-size: 100%;
+  background-color: #77C5F7;
+  color: #ffffff;
+  outline: none;
+  border-color: #354458;
+  border-width: 1%;
+  border-style: solid;
+}
+.keyboard button:hover{
+  background-color: #29ABA4;
 }
