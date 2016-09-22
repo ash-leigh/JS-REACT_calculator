@@ -34,7 +34,7 @@ var CalculatorBox = React.createClass({
     return(
       <div className='calc-box'>
       <div className='header'>JS React Calculator</div>
-        <CalculatorDisplay display={this.state.display}handleOnChange={this.handleInput} class={this.state.displayClass}/>
+        <CalculatorDisplay display={this.state.display} handleOnChange={this.handleInput} class={this.state.displayClass} handleSubmit={this.handleEqualsClick} split={this.splitText}/>
         <CalculatorKeyboard handleClick={this.handleInput} handleSubmit={this.handleEqualsClick}/>
       </div>
     )

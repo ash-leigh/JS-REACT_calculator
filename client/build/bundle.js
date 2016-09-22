@@ -19797,7 +19797,7 @@
 	        { className: 'header' },
 	        'JS React Calculator'
 	      ),
-	      React.createElement(CalculatorDisplay, { display: this.state.display, handleOnChange: this.handleInput, 'class': this.state.displayClass }),
+	      React.createElement(CalculatorDisplay, { display: this.state.display, handleOnChange: this.handleInput, 'class': this.state.displayClass, handleSubmit: this.handleEqualsClick, split: this.splitText }),
 	      React.createElement(CalculatorKeyboard, { handleClick: this.handleInput, handleSubmit: this.handleEqualsClick })
 	    );
 	  }
