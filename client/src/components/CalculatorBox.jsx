@@ -27,7 +27,11 @@ var CalculatorBox = React.createClass({
     var calculator = new Calculator(this.state.display);
     var result = calculator.calculate();
     this.state.queryCheck.clearQuery();
-    this.setState({display: result});
+    if(isNaN(result)){
+      this.setState({display: 'not valid sum', displayClass: 'error'});
+    }else{
+      this.setState({display: result});
+    }
   },
 
   render: function(){
